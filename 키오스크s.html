@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-width, initial-scale=1.0, user-scalable=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+
+    <!--이거 폰트인데 https://fonts.google.com/specimen/Diphylleia?subset=korean&noto.script=Kore 여기 링크에서 엠베드링크 다운받아서 여기 붙여넣고 원하는걸로 쓸수있어--> 
+    <style>
+
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image {width: auto; height: 50vw; position: absolute;}
+        .image2 {width: 50%; position: absolute;}
+ 
+
+/* 메뉴, 주문서-----------------------------------------------------------------------------------------*/
+
+        .menu { /*추천메뉴 이미지*/
+            left: 120%;
+            height: 78%;
+            top: 22%;
+            transform: translateX(-50%);  /*추천메뉴 이미지 x좌표*/
+            z-index: 631;
+            cursor: pointer;
+            transition: left 0.5s ease;
+        }
+        .menuText {    /*추천메뉴 텍스트*/
+            position: absolute;
+            left: 120%;
+            top: 27%;
+            transform: translateX(-45%); /*주문서 텍스트 x좌표*/
+            z-index: 632;
+            font-family: 'Poor Story', sans-serif; /*폰트(바꿀 폰트명, 폰트 사용 불가능할 때 대체 폰트)*/
+            font-size: 2vw;
+            color: black;
+            transition: left 0.5s ease; 
+            white-space: nowrap; 
+        }
+        .menu-reverse {left: 90%;}
+        .menu-enter {left: 120%;}
+        .menuText-reverse {left: 90%;}
+        .menuText-enter {left: 120%;}
+
+
+
+        .menu2 { /*주문서 이미지*/
+            left: 120%;
+            height: 100%;
+            transform: translateX(-50%); /*주문서 이미지 x좌표*/
+            z-index: 621;
+            cursor: pointer;
+            transition: left 0.5s ease;
+        }
+        .menuText2 { /*주문서 텍스트*/
+            position: absolute;
+            left: 120%;
+            top: 8%;
+            transform: translateX(-45%); /*주문서 텍스트 x좌표*/
+            z-index: 625;
+            font-family: 'Poor Story', sans-serif; 
+            font-size: 2vw;
+            color: black;
+            transition: left 0.5s ease; 
+            white-space: nowrap; 
+        }
+        .menu2-reverse {left: 90%;}
+        .menu2-enter {left: 120%;}
+        .menuText2-reverse {left: 90%;}
+        .menuText2-enter {left: 120%;}
+
+/*-----------------------------------------------------------------------------------------*/
+
+        .cup { /*컵테두리,배경*/
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 80;
+        }
+
+        .background { /*배경이미지*/
+            right: 50%;
+            transform: translateX(50%);
+            z-index: 1;
+        }
+
+/*내용물-----------------------------------------------------------------------------------------*/        
+        .cuptem { /* cuptem: 1번째 줄 (뜨겁게, 얼음)*/
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3; 
+        }
+        .cupbase { /* cupbase: 2번째 줄 (물,사이다,우유)*/
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3; 
+        }
+
+        .cupin1 {left: 50%;transform: translateX(-50%);z-index: 3;} /* cupin: 3번째 줄 (레몬, 딸기, 아이스티, 코코아)*/
+        .cupin2 {left: 50%;transform: translateX(-50%);z-index: 3;}
+        .cupin3 {left: 50%;transform: translateX(-50%);z-index: 3;}
+        .cupin4 {left: 50%;transform: translateX(-50%);z-index: 3;}
+
+        .cuptop1 {left: 50%;transform: translateX(-50%);z-index: 84;} /* cuptop: 4번째 줄 (젤리, 스프링클, 팝핑캔디, 휘핑크림)*/
+        .cuptop2 {left: 50%;transform: translateX(-50%);z-index: 83;}
+        .cuptop3 {left: 50%;transform: translateX(-50%);z-index: 82;}
+        .cuptop4 {left: 50%;transform: translateX(-50%);z-index: 81;}
+
+
+/*버튼-------------------------------------------------------------------------------*/
+        button {
+            z-index: 102;
+            position: absolute;
+            width: 5vw;
+            height: 5vw;
+            overflow: visible;
+            background: none;
+            border: none;
+            transition: transform 0.2s ease;
+        }
+
+        button:active {transform: scale(0.85);}
+
+        button img {
+            z-index: 102;
+            width: 5vw;
+            height: 5vw;
+            display: block;   
+        }
+/*-----------------------------------------------------------------------------------------*/
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        
+        <img class="image2 menu2" src="https://url.kr/16u53a"><!-- 주문서 이미지 링크(Ctrl+클릭해서 확인) -->
+        <img class="image2 menu" src="https://url.kr/pjb25c"><!-- 추천메뉴 이미지 링크(Ctrl+클릭해서 확인) -->
+        <!-- 메뉴판 나중에 더 깔끔하게 그려서 이미지 링크 보내줄게ㅠㅠ -->
+        <img class="image background" src="https://url.kr/bk5wpn"><!-- 전체 배경 이미지 -->
+        <img class="image cup" src="https://url.kr/vq6glw"><!-- 컵테두리 -->
+        <img class="image cup" src="https://url.kr/mb18qk" style="z-index: 2;" ><!-- 컵배경 -->
+        <img class="image cupbase"  style="z-index: 2;">
+        <img class="image cupin1"  style="z-index: 2;">
+        <img class="image cuptop1"  style="z-index: 84;">
+        <img class="image cupin2"  style="z-index: 2;">
+        <img class="image cuptop2"  style="z-index: 83;">
+        <img class="image cupin3"  style="z-index: 2;">
+        <img class="image cuptop3"  style="z-index: 82;">
+        <img class="image cupin4"  style="z-index: 2;">
+        <img class="image cuptop4"  style="z-index: 81;">
+        <img class="image cuptem"  style="z-index: 2;">
+
+        <!-- 추천메뉴 텍스트 --><span class="menuText">여기에 메뉴 입력</span>
+        <!-- 주문서 텍스트 --><span class="menuText2">--------------------<br><span id="hotText"></span><br><span id="iceText"></span><br><span id="waterText"></span><br><span id="sparkling_waterText"></span><br><span id="milkText"></span><br><span id="lemonText"></span><br><span id="sbText"></span><br><span id="icText"></span><br><span id="coText"></span><br><span id="jText"></span><br><span id="sText"></span><br><span id="pText"></span><br><span id="wText"></span><br>--------------------</span> </span></span>
+    </div>
+    <form id="orderForm">
+        <!-- 버튼 위치랑 이미지 -->
+        <!-- 위치설정할때 픽셀이나 퍼센트로 하면 창 크기 줄였을때 바뀌니까 숫자 뒤에 vw붙여야해!! -->
+        <button type="button" onclick="selectBase('hot')" style="left: 26vw; top: 2vw;"><img src="https://url.kr/ucbdnx" alt="뜨겁게"></button>
+        <button type="button" onclick="selectBase('ice')" style="left: 31.5vw; top: 2vw;"><img src="https://url.kr/qjgdr5" alt="얼음"></button>
+        <button type="button" onclick="selectBase('water')" style="left: 13.5vw; top: 11.5vw;"><img src="https://url.kr/duq7ij" alt="물"></button>
+        <button type="button" onclick="selectBase('sparkling_water')" style="left: 19.3vw; top: 11.5vw;"><img src="https://url.kr/cy2n9q" alt="사이다"></button>
+        <button type="button" onclick="selectBase('milk')" style="left: 25.5vw; top: 11.5vw;"><img src="https://url.kr/mfjy7o" alt="우유"></button>
+        <button type="button" onclick="selectBase('lemon')" style="left: 13.5vw; top: 20.5vw;"><img src="https://url.kr/p9bazm" alt="레몬"></button>
+        <button type="button" onclick="selectBase('strawberry')" style="left: 19.5vw; top: 20.5vw;"><img src="https://url.kr/ua5emv" alt="딸기"></button>
+        <button type="button" onclick="selectBase('icetea')" style="left: 25.5vw; top: 20.5vw;"><img src="https://url.kr/ypsjei" alt="아이스티"></button>
+        <button type="button" onclick="selectBase('cocoa')" style="left: 31.5vw; top: 20.5vw;"><img src="https://url.kr/4xs1ep" alt="코코아"></button>
+        <button type="button" onclick="selectBase('jelly')" style="left: 13.5vw; top: 30.5vw;"><img src="https://url.kr/kd9gox" alt="젤리"></button>
+        <button type="button" onclick="selectBase('sprinkle')" style="left: 19.5vw; top: 30.5vw;"><img src="https://url.kr/94y2tz" alt="스프링클"></button>
+        <button type="button" onclick="selectBase('popping_candy')" style="left: 25.5vw; top: 30.5vw;"><img src="https://url.kr/dbujsq" alt="팝핑캔디"></button>
+        <button type="button" onclick="selectBase('whipped_cream')" style="left: 31.5vw; top: 30.5vw;"><img src="https://url.kr/e6z35v" alt="휘핑크림"></button>
+
+        <button type="button" onclick="selectBase('done')"style="left: 82vw; top: 42vw;"><img src="https://url.kr/db5vwj"  alt="주문"></button>
+        <button type="button" onclick="selectBase('reset')" style="left: 12vw; top: 42vw;"><img src="https://url.kr/xqjap3"  alt="초기화"></button>
+
+    </form>
+
+    <script>
+//주문서, 추천메뉴 클릭 애니메이션------------------------------------------------------------------
+
+        let isAnimating = false;
+        function adjustTextPosition(leftValue, element) {
+            element.style.left = leftValue;
+        }
+        document.querySelector('.menu2').addEventListener('click', function() {
+            if (isAnimating) return;
+
+            isAnimating = true;
+
+            // 클릭 시 left 값 변경
+            if (this.classList.contains('menu2-reverse')) {
+                this.classList.remove('menu2-reverse');
+                adjustTextPosition('120%', document.querySelector('.menuText2'));
+            } else {
+                this.classList.add('menu2-reverse');
+                adjustTextPosition('85%', document.querySelector('.menuText2'));
+            }
+
+            // 애니메이션 종료 후에 클래스 제거
+            setTimeout(() => {
+                isAnimating = false;
+            }, 500); 
+        });
+
+        document.querySelector('.menu').addEventListener('click', function() {
+            if (isAnimating) return;
+
+            isAnimating = true;
+
+            // 클릭 시 left 값 변경
+            if (this.classList.contains('menu-reverse')) {
+                this.classList.remove('menu-reverse');
+                adjustTextPosition('120%', document.querySelector('.menuText'));
+            } else {
+                this.classList.add('menu-reverse');
+                adjustTextPosition('85%', document.querySelector('.menuText'));
+            }
+
+            // 애니메이션 종료 후에 클래스 제거
+            setTimeout(() => {
+                isAnimating = false;
+            }, 500); 
+        });
+
+// 버튼 클릭 처리----------------------------------------------------------
+
+        var isHotSelected = false;
+        var isIceSelected = false;
+        var isWaterSelected = false;
+        var isSparklingwaterSelected = false;
+        var isMilkSelected = false;
+        var isLemonSelected = false;
+        var isStrawberrySelected = false;
+        var isIceteaSelected = false;
+        var isCocoaSelected = false;
+        var isJellySelected = false;
+        var isSprinkleSelected = false;
+        var isPoppingcandySelected = false;
+        var isWhippedcreamSelected = false;
+
+        //주문서 텍스트 처리 함수
+        function updateText() {
+            const hotText = document.getElementById('hotText');
+            hotText.innerText = isHotSelected ? "뜨겁게 : v" : "뜨겁게 : ";
+            const iceText = document.getElementById('iceText');
+            iceText.innerText = isIceSelected ? "얼음 : v" : "얼음 : ";
+            const waterText = document.getElementById('waterText');
+            waterText.innerText = isWaterSelected ? "물 : v" : "물 : ";
+            const sparkling_waterText = document.getElementById('sparkling_waterText');
+            sparkling_waterText.innerText = isSparklingwaterSelected ? "사이다 : v" : "사이다 : ";
+            const milkText = document.getElementById('milkText');
+            milkText.innerText = isMilkSelected ? "우유: v" : "우유 : ";
+            const lemonText = document.getElementById('lemonText');
+            lemonText.innerText = isLemonSelected ? "레몬 : v" : "레몬 : ";
+            const sbText = document.getElementById('sbText');
+            sbText.innerText = isStrawberrySelected ? "딸기 : v" : "딸기 : ";
+            const icText = document.getElementById('icText');
+            icText.innerText = isIceteaSelected ? "아이스티 : v" : "아이스티 : ";
+            const coText = document.getElementById('coText');
+            coText.innerText = isCocoaSelected ? "코코아 : v" : "코코아 : ";
+            const jText = document.getElementById('jText');
+            jText.innerText = isJellySelected ? "젤리 : v" : "젤리 : ";     
+            const scText = document.getElementById('sText');
+            sText.innerText = isSprinkleSelected ? "스프링클 : v" : "스프링클 : ";
+            const pText = document.getElementById('pText');
+            pText.innerText = isPoppingcandySelected ? "팝핑캔디 : v" : "팝핑캔디 : ";
+            const wText = document.getElementById('wText');
+            wText.innerText = isWhippedcreamSelected ? "휘핑크림 : v" : "휘핑크림 : ";          
+        }
+        //선택에 따라 컵에 이미지를 추가하는 함수
+        function selectBase(base) {
+            const cupImage = document.querySelector('.cuptem');
+            const cupImage1 = document.querySelector('.cupbase');
+            const cupImage21 = document.querySelector('.cupin1');
+            const cupImage31 = document.querySelector('.cuptop1');
+            const cupImage22 = document.querySelector('.cupin2');
+            const cupImage32 = document.querySelector('.cuptop2');
+            const cupImage23 = document.querySelector('.cupin3');
+            const cupImage33 = document.querySelector('.cuptop3');
+            const cupImage24 = document.querySelector('.cupin4');
+            const cupImage34 = document.querySelector('.cuptop4');
+            switch (base) {
+                //cuptem(중복선택 불가능)
+                case 'hot':
+                    cupImage.src = 'https://url.kr/lu6o3w'; 
+                    isHotSelected = true;
+                    isIceSelected = false;
+                    break;
+                case 'ice':
+                    cupImage.src = 'https://url.kr/kgntep'; 
+                    isIceSelected = true;
+                    isHotSelected = false;
+                    break;
+                //cupbase(중복선택 불가능)
+                case 'water':
+                    cupImage1.src = 'https://url.kr/jv654u'; 
+                    isWaterSelected = true;
+                    isSparklingwaterSelected = false;
+                    isMilkSelected = false;
+                    break;
+                case 'sparkling_water':
+                    cupImage1.src = 'https://url.kr/xeo1uh'; 
+                    isWaterSelected = false;
+                    isSparklingwaterSelected = true;
+                    isMilkSelected = false;
+                    break;
+                case 'milk':
+                    cupImage1.src = 'https://url.kr/vkey2b'; 
+                    isWaterSelected = false;
+                    isSparklingwaterSelected = false;
+                    isMilkSelected = true;
+                    break;
+                //cupin(중복선택 가능)
+                case 'lemon':
+                    cupImage21.src = 'https://url.kr/s7qfvk'; 
+                    isLemonSelected = true;
+                    break;
+                case 'strawberry':
+                    cupImage22.src = 'https://url.kr/xh16lv'; 
+                    isStrawberrySelected = true;
+                    break;
+                case 'icetea':
+                    cupImage23.src = 'https://url.kr/x76tpu'; 
+                    isIceteaSelected = true;
+                    break;
+                case 'cocoa':
+                    cupImage24.src = 'https://url.kr/5gi7qa'; 
+                    isCocoaSelected = true;
+                    break;      
+                //cuptop(중복선택 가능)    
+                case 'jelly':
+                    if (isWhippedcreamSelected==true) cupImage31.src = 'https://url.kr/mnweh6';
+                    else cupImage31.src = 'https://url.kr/3mzhdk'; 
+                    isJellySelected = true;
+                    break;
+                case 'sprinkle':
+                    if (isWhippedcreamSelected==true) cupImage32.src = 'https://url.kr/f1qiuj'; 
+                    else cupImage32.src = 'https://url.kr/w42esn';
+                    isSprinkleSelected = true;
+                    break;
+                case 'popping_candy':
+                    if (isWhippedcreamSelected==true) cupImage33.src = 'https://url.kr/cj5qpa'; 
+                    else cupImage33.src = 'https://url.kr/fgso6w';
+                    isPoppingcandySelected = true;
+                    break;
+                case 'whipped_cream':
+                    cupImage34.src = 'https://url.kr/ovbape'; 
+                    isWhippedcreamSelected = true;
+                    break;                          
+                //리셋, 주문
+                case 'reset':
+                    isHotSelected = false;
+                    isIceSelected = false;
+                    isWaterSelected=false;
+                    isSparklingwaterSelected=false;
+                    isMilkSelected=false;
+                    isLemonSelected=false;
+                    isStrawberrySelected=false;
+                    isIceteaSelected=false;
+                    isCocoaSelected=false;
+                    isJellySelected=false;
+                    isSprinkleSelected=false;
+                    isPoppingcandySelected=false;
+                    isWhippedcreamSelected=false;
+                    //오류방지용 투명한 이미지 url
+                    cupImage.src = 'https://url.kr/xashuf';
+                    cupImage1.src = 'https://url.kr/xashuf';
+                    cupImage21.src = 'https://url.kr/xashuf';
+                    cupImage31.src = 'https://url.kr/xashuf';
+                    cupImage22.src = 'https://url.kr/xashuf';
+                    cupImage32.src = 'https://url.kr/xashuf';
+                    cupImage23.src = 'https://url.kr/xashuf';
+                    cupImage33.src = 'https://url.kr/xashuf';
+                    cupImage24.src = 'https://url.kr/xashuf';
+                    cupImage34.src = 'https://url.kr/xashuf'; 
+                    break;
+
+                case 'done':
+                    alert("주문이 완료되었습니다!");
+                    //이제 서버같은거 만들어서 저 is~~~Selected 변수들 값을 웹으로 보내야해 ㅠㅠ
+                    //파이썬 서버는 전에 해봤는데 잘 안됐고 git 서버 만들어야할듯
+                    break;
+
+                default:
+                    // 기본 케이스를 처리하거나 아무 작업도 하지 않습니다.
+                    break;
+            }
+            updateText(); //주문서 글자 업데이트
+        }
+        updateText(); //주문서 글자 업데이트
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
