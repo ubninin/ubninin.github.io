@@ -193,7 +193,23 @@
     </form>
 
     <script>
-
+        function sendDataToServer() {
+            // 클라이언트에서 서버로 데이터를 전송
+            fetch('https://your-server-url.com/sendData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: 'Hello from client!' }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Response from server:', data);
+            })
+            .catch(error => {
+                console.error('Error sending data to server:', error);
+            });
+        }
 //주문서, 추천메뉴 클릭 애니메이션------------------------------------------------------------------
 
         let isAnimating = false;
