@@ -394,10 +394,11 @@
                     break;
 
                 case 'done':
+                    downloadOrderInfo()
                     alert("주문이 완료되었습니다!");
                     //이제 서버같은거 만들어서 저 is~~~Selected 변수들 값을 웹으로 보내야해 ㅠㅠ
                     //파이썬 서버는 전에 해봤는데 잘 안됐고 git 서버 만들어야할듯
-                    downloadOrderInfo()
+                    
                     resetOrder()
                     break;
                 default:
