@@ -193,6 +193,7 @@
     </form>
 
     <script>
+
 //주문서, 추천메뉴 클릭 애니메이션------------------------------------------------------------------
 
         let isAnimating = false;
@@ -397,6 +398,42 @@
                     //이제 서버같은거 만들어서 저 is~~~Selected 변수들 값을 웹으로 보내야해 ㅠㅠ
                     //파이썬 서버는 전에 해봤는데 잘 안됐고 git 서버 만들어야할듯
                     break;
+        document.querySelector('button[data-action="done"]').addEventListener('click', function() {
+            const selectedData = {
+                isHotSelected,
+                isIceSelected,
+                isWaterSelected,
+                isSparklingwaterSelected,
+                isMilkSelected,
+                isLemonSelected,
+                isStrawberrySelected,
+                isIceteaSelected,
+                isCocoaSelected,
+                isJellySelected,
+                isSprinkleSelected,
+                isPoppingcandySelected,
+                isWhippedcreamSelected
+            };
+
+            // 서버로 데이터 전송
+            fetch('/sendData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(selectedData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Server response:', data);
+                alert('주문이 완료되었습니다!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        // ...
 
                 default:
                     // 기본 케이스를 처리하거나 아무 작업도 하지 않습니다.
