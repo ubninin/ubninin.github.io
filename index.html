@@ -394,12 +394,18 @@
                     break;
 
                 case 'done':
-                    downloadOrderInfo()
-                    alert("주문이 완료되었습니다!");
+
+                    if (isHotSelected==true && isSparklingwaterSelected==true){
+                        alert("뜨거운 사이다는 선택하실 수 없습니다.");}
+                    if (isWaterSelected==false && isSparklingwaterSelected==false && isMilkSelected==false){
+                        alert("물, 사이다, 우유 중 하나를 선택해 주세요.");}
+                        
+                    else if (isHotSelected==false || isSparklingwaterSelected==false){
+                        downloadOrderInfo()
+                        alert("주문이 완료되었습니다!");
                     //이제 서버같은거 만들어서 저 is~~~Selected 변수들 값을 웹으로 보내야해 ㅠㅠ
                     //파이썬 서버는 전에 해봤는데 잘 안됐고 git 서버 만들어야할듯
-                    
-                    resetOrder()
+                        resetOrder()}
                     break;
                 default:
                     // 기본 케이스를 처리하거나 아무 작업도 하지 않습니다.
