@@ -397,6 +397,8 @@
                     alert("주문이 완료되었습니다!");
                     //이제 서버같은거 만들어서 저 is~~~Selected 변수들 값을 웹으로 보내야해 ㅠㅠ
                     //파이썬 서버는 전에 해봤는데 잘 안됐고 git 서버 만들어야할듯
+                    downloadOrderInfo()
+                    resetOrder()
                     break;
                 default:
                     // 기본 케이스를 처리하거나 아무 작업도 하지 않습니다.
@@ -405,6 +407,46 @@
             updateText(); //주문서 글자 업데이트
         }
         updateText(); //주문서 글자 업데이트
+        function resetOrder() {
+            isHotSelected = false;
+            isIceSelected = false;
+            isWaterSelected = false;
+            isSparklingwaterSelected = false;
+            isMilkSelected = false;
+            isLemonSelected = false;
+            isStrawberrySelected = false;
+            isIceteaSelected = false;
+            isCocoaSelected = false;
+            isJellySelected = false;
+            isSprinkleSelected = false;
+            isPoppingcandySelected = false;
+            isWhippedcreamSelected = false;
+
+            // 모든 이미지 초기화
+            const cupImage = document.querySelector('.cuptem');
+            const cupImage1 = document.querySelector('.cupbase');
+            const cupImage21 = document.querySelector('.cupin1');
+            const cupImage31 = document.querySelector('.cuptop1');
+            const cupImage22 = document.querySelector('.cupin2');
+            const cupImage32 = document.querySelector('.cuptop2');
+            const cupImage23 = document.querySelector('.cupin3');
+            const cupImage33 = document.querySelector('.cuptop3');
+            const cupImage24 = document.querySelector('.cupin4');
+            const cupImage34 = document.querySelector('.cuptop4');
+
+            cupImage.src = 'https://url.kr/xashuf';
+            cupImage1.src = 'https://url.kr/xashuf';
+            cupImage21.src = 'https://url.kr/xashuf';
+            cupImage31.src = 'https://url.kr/xashuf';
+            cupImage22.src = 'https://url.kr/xashuf';
+            cupImage32.src = 'https://url.kr/xashuf';
+            cupImage23.src = 'https://url.kr/xashuf';
+            cupImage33.src = 'https://url.kr/xashuf';
+            cupImage24.src = 'https://url.kr/xashuf';
+            cupImage34.src = 'https://url.kr/xashuf';
+
+            updateText(); // 주문서 글자 업데이트
+        }
         function downloadOrderInfo() {
             const orderInfo = `
                 Hot: ${isHotSelected}
@@ -437,7 +479,7 @@
         }
 
         // "Done" 버튼 클릭 시 주문 정보 다운로드
-        document.querySelector('[onclick="selectBase(\'done\')"]').addEventListener('click', downloadOrderInfo);
+        //document.querySelector('[onclick="selectBase(\'done\')"]').addEventListener('click', downloadOrderInfo);
 
     </script>
     <script src="script.js"></script>
