@@ -193,7 +193,9 @@
     </form>
 
     <script>
-
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+        });
 //주문서, 추천메뉴 클릭 애니메이션------------------------------------------------------------------
 
         let isAnimating = false;
